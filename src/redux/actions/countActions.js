@@ -1,11 +1,11 @@
-export const incNumber = () => {
+export const incNumber = (num) => {
     return {
-        type: 'INCREMENT', value: 1
+        type: 'INCREMENT', payload: num
     }
 }
 
 export const decNumber = () => {
     return {
-        type: 'DECREMENT', value: 2
+        type: 'DECREMENT'
     }
 }
