@@ -18,8 +18,7 @@ const countReducer = (state = initialState, action) => {
             let usersId = [];
             state.selectedList.length ? state.selectedList.forEach(item => {
                 usersId.push(item.id);
-            }) 
-            : ""
+            }) : ""
             const newState = {
                 ...state,
                 selectedList: [ ...state.selectedList, action.payload]
@@ -29,7 +28,7 @@ const countReducer = (state = initialState, action) => {
         case 'DECREMENT': {
             const newState = {
                 ...state,
-                counter: state.counter > 0 ? state.counter - 1 : state.counter
+                selectedList: state.selectedList.filter(item => item.id !== action.payload)
             }
             return newState;
         }

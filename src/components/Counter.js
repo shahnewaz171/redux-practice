@@ -12,7 +12,7 @@ const Counter = () => {
     useEffect(() => {
         dispatch(loadUsers())
     }, [dispatch]);
-
+    
     console.log(discoveryList);
 
     return (
@@ -23,7 +23,7 @@ const Counter = () => {
                  <div key={discovery.id} className="p-2">
                     <div>count - {counter}</div>
                     <button type="button" onClick={() => dispatch(incNumber(discovery))}>Increment</button>
-                    <button type="button" onClick={() => dispatch(decNumber())}>Decrement</button>
+                    <button type="button" onClick={() => dispatch(decNumber(discovery.id))}>Decrement</button>
                  </div>
                 )
             })
