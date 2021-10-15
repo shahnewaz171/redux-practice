@@ -15,11 +15,16 @@ const countReducer = (state = initialState, action) => {
             return newState;
         }
         case 'INCREMENT': {
+            let usersId = [];
+            state.selectedList.length ? state.selectedList.forEach(item => {
+                usersId.push(item.id);
+            }) 
+            : ""
             const newState = {
                 ...state,
                 selectedList: [ ...state.selectedList, action.payload]
             }
-            return newState;
+            return !usersId.includes(action.payload.id) ? newState : state;
         }
         case 'DECREMENT': {
             const newState = {

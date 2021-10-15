@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { decNumber, incNumber, loadUsers } from '../redux/actions/countActions';
-import './Counter';
 
 const Counter = () => {
     const { counter, discoveryList } = useSelector((state) => {
