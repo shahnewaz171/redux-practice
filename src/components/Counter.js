@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { decNumber, incNumber } from '../redux/actions/countActions';
+import { decNumber, incNumber, loadUsers } from '../redux/actions/countActions';
 import './Counter';
 
 const Counter = () => {
-    const count = useSelector((state) => {
+    const { counter, discoveryList } = useSelector((state) => {
         return state.countReducer;
     })
+
     const dispatch = useDispatch();
-    console.log(count);
+
+    useEffect(() => {
+        dispatch(loadUsers())
+    }, [dispatch]);
+
+    console.log(discoveryList);
 
     return (
-        <div>
-            <div>count - {count.counter}</div>
-            <button type="button" onClick={() => dispatch(incNumber(2))}>Increment</button>
-            <button type="button" onClick={() => dispatch(decNumber())}>Decrement</button>
+        <div className="m-4">
+           {
+               discoveryList?.map((discovery) => {
+                return (
+                 <div key={discovery.id} className="p-2">
+                    <div>count - {counter}</div>
+                    <button type="button" onClick={() => dispatch(incNumber(discovery))}>Increment</button>
+                    <button type="button" onClick={() => dispatch(decNumber())}>Decrement</button>
+                 </div>
+                )
+            })
+           }
         </div>
     );
 };

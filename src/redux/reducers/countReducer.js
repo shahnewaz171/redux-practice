@@ -1,14 +1,33 @@
 const initialState = {
+    discoveryList: [],
+    selectedList: [],
     counter: 0
 }
 
 const countReducer = (state = initialState, action) => {
 
     switch(action.type) {
-        case 'INCREMENT':
-            return {counter: state.counter + action.payload};
-        case 'DECREMENT':
-            return {counter: state.counter > 0 ? state.counter - 1 : state.counter};
+        case 'LOAD_USERS': {
+            const newState = {
+                ...state,
+                discoveryList: action.payload
+            }
+            return newState;
+        }
+        case 'INCREMENT': {
+            const newState = {
+                ...state,
+                selectedList: [ ...state.selectedList, action.payload]
+            }
+            return newState;
+        }
+        case 'DECREMENT': {
+            const newState = {
+                ...state,
+                counter: state.counter > 0 ? state.counter - 1 : state.counter
+            }
+            return newState;
+        }
         default: 
             return state     
     }
